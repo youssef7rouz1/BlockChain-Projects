@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🪙 Bank Account DApp</title>
+  <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+<body>
+  <main>
+    <h1>🪙 Multi-Owner Bank Account</h1>
+
+    <!-- CREATE ACCOUNT -->
+    <section>
+      <h2>Create Account</h2>
+      <input id="ownerAddresses" placeholder="Comma-separated addresses" />
+      <button onclick="createAccount()">Create Account</button>
+    </section>
+
+    <!-- DEPOSIT -->
+    <section>
+      <h2>Deposit ETH</h2>
+      <input id="depositAccountId" placeholder="Account ID" />
+      <input id="depositAmount" placeholder="Amount in ETH" />
+      <button onclick="deposit()">Deposit</button>
+    </section>
+
+    <!-- REQUEST WITHDRAW -->
+    <section>
+      <h2>Request Withdraw</h2>
+      <input id="requestAccountId" placeholder="Account ID" />
+      <input id="requestAmount" placeholder="Amount in ETH" />
+      <button onclick="requestWithdraw()">Request Withdraw</button>
+    </section>
+
+    <!-- APPROVE WITHDRAW -->
+    <section>
+      <h2>Approve Withdraw</h2>
+      <input id="approveAccountId" placeholder="Account ID" />
+      <input id="approveWithdrawId" placeholder="Withdraw ID" />
+      <button onclick="approveWithdraw()">Approve</button>
+    </section>
+
+    <!-- EXECUTE WITHDRAW -->
+    <section>
+      <h2>Execute Withdraw</h2>
+      <input id="withdrawAccountId" placeholder="Account ID" />
+      <input id="withdrawId" placeholder="Withdraw ID" />
+      <button onclick="withdraw()">Withdraw</button>
+    </section>
+
+    <!-- ACCOUNT INFO (wrapper for getBalance, getOwners, getPendingWithdrawals) -->
+    <section>
+      <h2>Account Info</h2>
+      <input id="balanceAccountId" placeholder="Account ID" />
+      <button onclick="getAccountInfo()">Get Info</button>
+      <pre id="accountInfo"></pre>
+    </section>
+
+    <!-- VIEW ALL OWNED ACCOUNTS (uses getAccounts internally) -->
+    <section>
+      <h2>🔍 View My Accounts</h2>
+      <button onclick="viewAccounts()">View Accounts (Detailed)</button>
+      <ul id="accountsList"></ul>
+    </section>
+
+    <!-- NEW: Direct "Get Balance" -->
+    <section>
+      <h2>Get Balance</h2>
+      <input id="balanceAccountIdSolo" placeholder="Account ID" />
+      <button onclick="fetchBalance()">Get Balance</button>
+      <p><strong>Balance:</strong> <span id="balanceResult">N/A</span> ETH</p>
+    </section>
+
+    <!-- NEW: Direct "Get Owners" -->
+    <section>
+      <h2>Get Owners</h2>
+      <input id="ownersAccountId" placeholder="Account ID" />
+      <button onclick="fetchOwners()">Get Owners</button>
+      <ul id="ownersResult"></ul>
+    </section>
+
+    <!-- NEW: Direct "Get Approvals" -->
+    <section>
+      <h2>Get Approvals</h2>
+      <input id="approvalsAccountId" placeholder="Account ID" />
+      <input id="approvalsWithdrawId" placeholder="Withdraw ID" />
+      <button onclick="fetchApprovals()">Get Approvals</button>
+      <p><strong>Approvals:</strong> <span id="approvalsResult">N/A</span></p>
+    </section>
+
+    <!-- NEW: Direct "Get My Accounts" -->
+    <section>
+      <h2>Get My Accounts</h2>
+      <button onclick="fetchMyAccounts()">Get My Accounts</button>
+      <ul id="myAccountsResult"></ul>
+    </section>
+
+    <!-- CONNECT WALLET -->
+    <section>
+      <h2>🔌 Connect Wallet</h2>
+      <button onclick="connectWallet()">Connect MetaMask</button>
+    </section>
+
+    <!-- EVENT LOG -->
+    <section>
+      <h2>📜 Event Log</h2>
+      <div id="eventLog" style="
+        background: #1e1e1e;
+        color: #d4d4d4;
+        font-family: monospace;
+        font-size: 0.9em;
+        line-height: 1.5;
+        padding: 1em;
+        max-height: 250px;
+        overflow-y: auto;
+        border: 1px solid #444;
+        border-radius: 4px;
+      "></div>
+      <button onclick="document.getElementById('eventLog').innerHTML = ''">🧹 Clear Log</button>
+    </section>
+
+    <footer>
+      <p>🔗 Connected Address: <span id="currentAccount">Not connected</span></p>
+    </footer>
+  </main>
+
+  <!-- ✅ Load Ethers v6 UMD build -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6/dist/ethers.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
