@@ -41,7 +41,20 @@ A decentralized Ethereum application (DApp) that simulates a multi-signature ban
 - Reentrancy-safe logic  
 - Access control enforcement  
 
-### Run all tests with:
+## 📁 Project Structure
 
 ```bash
-npx hardhat test
+BankAccount/
+├── contracts/           # Solidity smart contracts
+│   └── BankAccount.sol
+├── frontend/            # Web frontend files
+│   ├── index.html
+│   ├── app.js
+│   └── deployment.json
+├── scripts/             # Deployment scripts
+│   └── deploy.js
+├── test/                # Unit tests
+│   └── bankAccount.t.js
+├── hardhat.config.js    # Hardhat config
+└── README.md
+
